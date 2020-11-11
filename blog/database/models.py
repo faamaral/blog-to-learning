@@ -11,7 +11,6 @@ class User(data.Model):
 
     admin = data.Column(data.Boolean, default=False)
 
-    posts = data.relationship('Post', backref='post')
 
     def __repr__(self) -> str:
         return f'<User> -> {self.username}'
@@ -21,7 +20,6 @@ class Category(data.Model):
 
     id = data.Column(data.Integer, primary_key=True)
     name = data.Column(data.String(25), index=True, unique=True, nullable=False)
-    posts = data.relationship('Post', backref='post')
 
     def __repr__(self) -> str:
         return f'<Category> -> {self.name}'
@@ -35,6 +33,7 @@ class Post(data.Model):
     slug = data.Column(data.String, nullable=False)
 
     user_id = data.Column('author', data.Integer, data.ForeignKey('user.id'))
+    user = data.relationship('User', foreign_keys=user_id)
 
     abstract = data.Column(data.Text, nullable=False)
     content = data.Column(data.Text, nullable=False)
@@ -43,4 +42,5 @@ class Post(data.Model):
     last_edit = data.Column(data.DateTime, default=datetime.utcnow)
 
     category_id = data.Column('category' ,data.Integer, data.ForeignKey('category.id'))
+    category = data.relationship('Category', foreign_keys=category_id)
 
