@@ -1,6 +1,12 @@
 from flask import Flask
+from blog.database import db
+from blog import configurations
 
-def create_app(config_settings):
+def create_app():
     app = Flask(__name__)
+
+    configurations.init_app(app)
+    #app.config.from_pyfile('config.py')
+    db.init_app(app)
 
     return app
