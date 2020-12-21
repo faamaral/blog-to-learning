@@ -1,7 +1,14 @@
 from blog.database.db import data
+from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
+from flask_login import UserMixin
 
-class User(data.Model):
+
+
+
+
+
+class User(UserMixin, data.Model):
     __tablename__ = 'user'
     id = data.Column(data.Integer, primary_key=True)
     full_name = data.Column(data.String(50), nullable=False)
@@ -11,9 +18,24 @@ class User(data.Model):
 
     admin = data.Column(data.Boolean, default=False)
 
+    def __init__(self, full_name, email, username, password, admin):
+        self.full_name = full_name
+        self.email = email
+        self.username = username
+        self.password = generate_password_hash(password)
+        self.admin = admin
+
+    def verify_password(self, password):
+        return check_password_hash(self.password, password)
+
+
+
 
     def __repr__(self) -> str:
         return f'<User> -> {self.username}'
+
+
+
 
 class Category(data.Model):
     __tablename__ = 'category'

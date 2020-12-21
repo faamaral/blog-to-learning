@@ -18,3 +18,10 @@ class UserRegistrationForm(FlaskForm):
     )
     confirm_password = PasswordField('Repeat Password')
     admin = BooleanField('Será administrador?', validators.DataRequired())
+
+
+class CreateNewPostForm(FlaskForm):
+
+    title = StringField('Titulo', validators.DataRequired())
+    abstract = CKEditorField('Resumo', validators.DataRequired)
+    content = ...
