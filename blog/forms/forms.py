@@ -4,6 +4,12 @@ from wtforms.fields.html5 import EmailField
 from wtforms import validators
 from flask_ckeditor import CKEditorField
 
+class UserLogin(FlaskForm):
+    email = EmailField('Endereço de email', [validators.DataRequired(), validators.Email()])
+    password = PasswordField('Senha', validators.DataRequired())
+    remember_me = BooleanField('Lembrar-me')
+    submit = SubmitField('Entrar')
+
 class UserRegistrationForm(FlaskForm):
 
     full_name = StringField('Nome completo', validators.DataRequired())

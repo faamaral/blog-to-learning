@@ -2,6 +2,7 @@ import os
 basedir = os.path.abspath(os.path.dirname(__file__))
 def init_app(app):
 
+    app.config['SECRET_KEY'] = '1234teste'
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db-dev.sqlite'
     app.config['DEBUG'] = True
     app.config['FLASK_ENV'] = 'development'

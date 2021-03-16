@@ -7,7 +7,18 @@ main = Blueprint('main', __name__)
 
 @main.route('/', methods=['get'])
 def index():
-    return render_template('index.html')
+    user = {'username': 'Fabiano'}
+    posts = [
+        {
+            'author': {'username': 'Fabis'},
+            'body': 'its a test'
+        },
+        {
+            'author': {'username': 'Untilit'},
+            'body': 'its a test 2'
+        }
+    ]
+    return render_template('tests/home.html', title='My blog', user=user, posts=posts)
 
 
 
