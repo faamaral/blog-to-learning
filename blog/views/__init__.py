@@ -1,6 +1,6 @@
 from blog.views.main import main
 from blog.views.upload import up
-from .auth import auth
+from blog.views.auth import auth
 
 def init_app(app):
     app.register_blueprint(main)
