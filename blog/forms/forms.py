@@ -1,8 +1,9 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, BooleanField, PasswordField, SubmitField, DateTimeField
 from wtforms.fields.html5 import EmailField
-from wtforms.validators import DataRequired, Email, EqualTo
+from wtforms.validators import DataRequired, Email, EqualTo, ValidationError
 from flask_ckeditor import CKEditorField
+from blog.database.models import User, Post
 import email_validator
 
 class UserLogin(FlaskForm):
@@ -19,12 +20,24 @@ class UserRegistrationForm(FlaskForm):
     password = PasswordField(
         'Senha',
         validators=[
-            DataRequired(),
-            EqualTo('confirm_password', message='As senhas devem conicidir')
+            DataRequired()
         ]
     )
-    confirm_password = PasswordField('Repeat Password')
-    admin = BooleanField('Será administrador?', validators=[DataRequired()])
+    confirm_password = PasswordField('Repetir senha', validators=[DataRequired(),
+            EqualTo('password', message='As senhas devem conicidir')])
+    admin = BooleanField('Admin?', default=False)
+    submit = SubmitField('Cadastrar')
+
+    def validate_email(self, email):
+        user = User.query.filter_by(email=email.data).first()
+        if user is not None:
+            raise ValidationError('Endereço de email já cadastrado, por favor tente outro')
+
+    def validate_username(self, username):
+        user = User.query.filter_by(email=username.data).first()
+        if user is not None:
+            raise ValidationError('Nome de usuario já cadastrado, por favor tente outro')
+
 
 
 class CreateNewPostForm(FlaskForm):

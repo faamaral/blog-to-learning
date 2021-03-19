@@ -2,11 +2,11 @@ from blog.database.db import data
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
 from flask_login import UserMixin
+from blog.login import login
 
-
-
-
-
+@login.user_loader
+def load_user():
+    return User.query.get(int(id))
 
 class User(UserMixin, data.Model):
     __tablename__ = 'user'
@@ -63,6 +63,6 @@ class Post(data.Model):
     created = data.Column(data.DateTime, nullable=False, default=datetime.utcnow)
     last_edit = data.Column(data.DateTime, default=datetime.utcnow)
 
-    category_id = data.Column('category' ,data.Integer, data.ForeignKey('category.id'))
+    category_id = data.Column('category',data.Integer, data.ForeignKey('category.id'))
     category = data.relationship('Category', foreign_keys=category_id)
 
