@@ -1,10 +1,11 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, BooleanField, PasswordField, SubmitField, DateTimeField
+from wtforms import StringField, BooleanField, PasswordField, SubmitField, DateTimeField, TextAreaField
+from wtforms.ext.sqlalchemy.fields import QuerySelectField
 from wtforms.fields.html5 import EmailField
 from wtforms.validators import DataRequired, Email, EqualTo, ValidationError
 from flask_ckeditor import CKEditorField
-from blog.database.models import User, Post
-import email_validator
+from blog.database.models import User, Post, Category
+from email_validator import validate_email
 
 class UserLogin(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Email('Enter with a valid email address')])
@@ -38,10 +39,21 @@ class UserRegistrationForm(FlaskForm):
         if user is not None:
             raise ValidationError('Nome de usuario já cadastrado, por favor tente outro')
 
-
+def list_categories():
+    return Category.query.all()
 
 class CreateNewPostForm(FlaskForm):
 
     title = StringField('Titulo', validators=[DataRequired()])
-    abstract = CKEditorField('Resumo', validators=[DataRequired()])
+    abstract = TextAreaField('Resumo', validators=[DataRequired()])
     content = CKEditorField('Conteudo', validators=[DataRequired()])
+
+    category = QuerySelectField('Categoria', query_factory=list_categories,validators=[DataRequired()])
+    submit = SubmitField('Criar postagem')
+
+
+
+class CreateNewCategory(FlaskForm):
+
+    name = StringField('Nome da categoria', validators=[DataRequired()])
+    submit = SubmitField('Criar categoria')

@@ -1,14 +1,17 @@
+from slugify import slugify
+
 from blog.database.db import data
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
 from flask_login import UserMixin
 from blog.login import login
 
+
 @login.user_loader
-def load_user():
+def load_user(id):
     return User.query.get(int(id))
 
-class User(UserMixin, data.Model):
+class User(data.Model,UserMixin):
     __tablename__ = 'user'
     id = data.Column(data.Integer, primary_key=True)
     full_name = data.Column(data.String(50), nullable=False)
@@ -61,8 +64,18 @@ class Post(data.Model):
     content = data.Column(data.Text, nullable=False)
 
     created = data.Column(data.DateTime, nullable=False, default=datetime.utcnow)
-    last_edit = data.Column(data.DateTime, default=datetime.utcnow)
+    last_edit = data.Column(data.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
     category_id = data.Column('category',data.Integer, data.ForeignKey('category.id'))
     category = data.relationship('Category', foreign_keys=category_id)
+
+    def __init__(self, title, user_id, abstract, content, category_id):
+        self.title=title
+        self.slug = slugify(title)
+        self.user_id=user_id
+        self.abstract=abstract
+        self.content=content
+        self.category_id=category_id
+
+
 

@@ -1,5 +1,6 @@
-from flask import Blueprint, render_template, flash, redirect, url_for
+from flask import Blueprint, render_template, flash, redirect, url_for, request
 from flask_login import current_user, login_user, logout_user
+from werkzeug.urls import url_parse
 
 from blog.forms.forms import UserLogin, UserRegistrationForm
 from blog.database.models import User
@@ -15,11 +16,14 @@ def login():
     form = UserLogin()
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
-        if user is not None or not user.verify_password(form.password.data):
+        if user is None or not user.verify_password(form.password.data):
             flash("Email ou senha invalidos")
             return redirect(url_for('auth.login'))
         login_user(user, remember=form.remember_me.data)
-        return redirect(url_for('main.login'))
+        next_page = request.args.get('next')
+        if not next_page or url_parse(next_page).netloc != '':
+            next_page = url_for('main.index')
+            return redirect(next_page)
     return render_template('tests/login.html', title="Entrar", form=form)
 
 @auth.route('/logout')
