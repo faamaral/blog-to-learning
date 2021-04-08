@@ -2,26 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ebc4c971-1447-4ebc-9c65-8d3e58ac4b63" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/views/author.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/views/categories.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/views/posts.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/my_blog.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/my_blog.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/blog/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog/configurations/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/blog/configurations/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog/database/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/blog/database/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog/forms/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/blog/forms/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog/login/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/blog/login/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog/views/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/blog/views/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog/views/auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/blog/views/auth.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/blog/templates/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/blog/views/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/blog/views/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog/views/upload.py" beforeDir="false" afterPath="$PROJECT_DIR$/blog/views/upload.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog/views/posts.py" beforeDir="false" afterPath="$PROJECT_DIR$/blog/views/posts.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/config.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/alembic.ini" beforeDir="false" afterPath="$PROJECT_DIR$/migrations/alembic.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/env.py" beforeDir="false" afterPath="$PROJECT_DIR$/migrations/env.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements-dev.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements-dev.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,7 +76,12 @@
       <workItem from="1616284120380" duration="2579000" />
       <workItem from="1616369634560" duration="5212000" />
       <workItem from="1616434148918" duration="9683000" />
-      <workItem from="1616455968907" duration="4220000" />
+      <workItem from="1616455968907" duration="5432000" />
+      <workItem from="1616543052662" duration="1409000" />
+      <workItem from="1616614640313" duration="1401000" />
+      <workItem from="1616632862547" duration="1192000" />
+      <workItem from="1616778399316" duration="885000" />
+      <workItem from="1616779477247" duration="10113000" />
     </task>
     <servers />
   </component>

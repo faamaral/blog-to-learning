@@ -12,10 +12,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')'''
 class Config:
 
     SECRET_KEY = '1234teste'
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///dados.db'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    DEBUG = True
-    FLASK_ENV = 'development'
     FLASK_ADMIN_SWATCH = 'Flatly'
     # app.config['CKEDITOR_PKG_TYPE'] = 'basic'
     CKEDITOR_SERVER_LOCAL = False
@@ -26,6 +23,20 @@ class Config:
     CKEDITOR_ENABLE_CSRF = True  # if you want to enable CSRF protect, uncomment this line
 
     # app.config['UPLOADED_PATH'] = 'blog/uploads'
+
+class Development(Config):
+    FLASK_ENV = 'development'
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///dados.db'
+    DEBUG = True
+
+class Production(Config):
+    FLASK_ENV = 'production'
+    SQLALCHEMY_DATABASE_URI = ''
+    DEBUG = False
+
+class Testing(Config):
+    FLASK_ENV='testing'
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///testing.db'
 
 
 

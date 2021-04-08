@@ -7,10 +7,10 @@ from blog.forms.forms import CreateNewPostForm
 
 posts_bp = Blueprint('posts', __name__)
 
-@posts_bp.route('/post/<id>/<slug>')
+@posts_bp.route('/post/<int:id>/<str:slug>', methods=['GET'])
 def post_detail(id, slug):
-    post = Post.query.get_or_404(id=id)
-    return render_template('')
+    post = Post.query.get(id=id)
+    return render_template('tests/post_detail.html', post=post)
 
 @posts_bp.route('/post/new', methods=['GET', 'POST'])
 @login_required
