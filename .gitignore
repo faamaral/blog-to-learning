@@ -2,3 +2,5 @@
 venv-blog
 **/tests
 venv
+*poetry.lock
+.env
