@@ -8,10 +8,10 @@ load_dotenv(os.path.join(basedir, '.env'))
 '''DEBUG = True
 FLASK_ENV = 'development'
 SECRET_KEY = os.environ.get('SECRET_KEY')'''
-
+secret = os.urandom(24)
 class Config:
 
-    SECRET_KEY = '1234teste'
+    SECRET_KEY = os.environ.get('SECRET_KEY') or secret
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     FLASK_ADMIN_SWATCH = 'Flatly'
     # app.config['CKEDITOR_PKG_TYPE'] = 'basic'
@@ -26,12 +26,13 @@ class Config:
 
 class Development(Config):
     FLASK_ENV = 'development'
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///dados.db'
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URI') or 'sqlite:///' + os.path.join(basedir, 'data.db')
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
     DEBUG = True
 
 class Production(Config):
     FLASK_ENV = 'production'
-    SQLALCHEMY_DATABASE_URI = ''
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URI')
     DEBUG = False
 
 class Testing(Config):
