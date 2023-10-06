@@ -10,23 +10,23 @@ main = Blueprint('main', __name__)
 
 @main.route('/', methods=['GET'])
 def index():
-    user = current_user.full_name
+    # user = current_user.full_name
 
-    posts = Post.query.order_by(Post.created.desc()).all()
+    # posts = Post.query.order_by(Post.created.desc()).all()
 
-    '''
+    
     posts = [
         {
-            'author': current_user.full_name,
+            'author': 'teste',
             'body': 'its a test'
         },
         {
-            'author': {'username': 'Untilit'},
+            'author': 'Untilit',
             'body': 'its a test 2'
         }
     ]
-    '''
-    return render_template('tests/home.html', title='My blog', posts=posts)
+    
+    return render_template('index.html', title='My blog', posts=posts)
 
 
 

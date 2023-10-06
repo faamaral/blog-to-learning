@@ -7,7 +7,7 @@ from blog.forms.forms import CreateNewPostForm
 
 posts_bp = Blueprint('posts', __name__)
 
-@posts_bp.route('/post/<int:id>/<str:slug>', methods=['GET'])
+@posts_bp.route('/post/<int:id>/<string:slug>', methods=['GET'])
 def post_detail(id, slug):
     post = Post.query.get(id=id)
     return render_template('tests/post_detail.html', post=post)

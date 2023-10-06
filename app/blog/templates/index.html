@@ -1,0 +1,13 @@
+<!doctype html>
+<html>
+    <head>
+        
+        <title>Welcome to Microblog</title>
+    </head>
+    <body>
+        <h1>Hi, User</h1>
+        {% for post in posts %}
+        <div><p>{{ post.author}} says: <b>{{ post.body }}</b></p></div>
+        {% endfor %}
+    </body>
+</html>

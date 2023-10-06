@@ -2,6 +2,8 @@ FROM python:3.9
 
 WORKDIR /usr/app/src
 
-COPY requirements-dev.txt .
+COPY /app .
 
 RUN pip install -r requirements-dev.txt
+
+ENTRYPOINT python3 run.py

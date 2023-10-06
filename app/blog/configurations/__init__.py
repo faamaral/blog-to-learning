@@ -8,7 +8,7 @@ def init_app(app):
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
     app.config['DEBUG'] = True
     app.config['FLASK_ENV'] = 'development'
-    app.config['FLASK_ADMIN_SWATCH'] = 'Flatly'
+    app.config['FLASK_ADMIN_SWATCH'] = 'cerulean'
     #app.config['CKEDITOR_PKG_TYPE'] = 'basic'
     app.config['CKEDITOR_SERVER_LOCAL'] = False
     app.config['CKEDITOR_HEIGHT'] = 400

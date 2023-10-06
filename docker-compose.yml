@@ -1,8 +1,9 @@
 version: "3.7"
 services:
   app:
-    build: .
+    build: 
+      context: ./docker/app
+      dockerfile: Dockerfile
+    image: techster-app
     ports:
       - "7007:7007"
-    volumes:
-      - .:/code
