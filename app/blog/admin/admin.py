@@ -13,7 +13,7 @@ def init_app(app):
 
 
     admin.name = 'MY BLOG'
-    admin.template_mode = 'bootstrap3'
+    admin.template_mode = 'bootstrap4'
     admin.add_view(UserAdmin(User,data.session))
     admin.add_view(PostAdmin(Post, data.session))
     admin.add_view(ModelView(Category,data.session))
