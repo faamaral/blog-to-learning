@@ -25,6 +25,8 @@ wtforms-ext = "^0.5"
 pillow = "^10.0.1"
 sqlalchemy = "^2.0.21"
 wtforms-sqlalchemy = "^0.3"
+psycopg2-binary = "^2.9.9"
+gunicorn = "^21.2.0"
 
 
 [build-system]

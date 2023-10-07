@@ -1,13 +1,17 @@
 import os
+from dotenv import load_dotenv
 
 def init_app(app):
     basedir = os.path.abspath(os.path.dirname(__file__))
+    load_dotenv(os.path.join(basedir, '.env'))
 
-    app.config['SECRET_KEY'] = '1234teste'
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///dados.db'
+    secret = os.urandom(24)
+
+    app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY') or secret
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URI') or 'sqlite:///' + os.path.join(basedir, 'dados.db')
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
-    app.config['DEBUG'] = True
-    app.config['FLASK_ENV'] = 'development'
+    app.config['DEBUG'] = os.environ.get('FLASK_DEBUG')
+    app.config['FLASK_ENV'] = os.environ.get('FLASK_ENV')
     app.config['FLASK_ADMIN_SWATCH'] = 'cerulean'
     #app.config['CKEDITOR_PKG_TYPE'] = 'basic'
     app.config['CKEDITOR_SERVER_LOCAL'] = False

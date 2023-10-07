@@ -1,0 +1,1 @@
+RUN flask db upgrade

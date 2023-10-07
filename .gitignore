@@ -4,3 +4,4 @@ venv-blog
 venv
 *poetry.lock
 .env
+docker/postgres/db-data
