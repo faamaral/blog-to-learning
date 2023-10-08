@@ -12,19 +12,19 @@ main = Blueprint('main', __name__)
 def index():
     # user = current_user.full_name
 
-    # posts = Post.query.order_by(Post.created.desc()).all()
+    posts = Post.query.order_by(Post.created.desc()).all()
 
     
-    posts = [
-        {
-            'author': 'teste',
-            'body': 'its a test'
-        },
-        {
-            'author': 'Untilit',
-            'body': 'its a test 2'
-        }
-    ]
+    # posts = [
+    #     {
+    #         'author': 'teste',
+    #         'body': 'its a test'
+    #     },
+    #     {
+    #         'author': 'Untilit',
+    #         'body': 'its a test 2'
+    #     }
+    # ]
     
     return render_template('index.html', title='My blog', posts=posts)
 
