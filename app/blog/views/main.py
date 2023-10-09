@@ -9,6 +9,7 @@ from blog.database.models import Post, Category
 main = Blueprint('main', __name__)
 
 @main.route('/', methods=['GET'])
+@main.route('/index', methods=['GET'])
 def index():
     # user = current_user.full_name
 

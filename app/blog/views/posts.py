@@ -9,8 +9,8 @@ posts_bp = Blueprint('posts', __name__)
 
 @posts_bp.route('/post/<int:id>/<string:slug>', methods=['GET'])
 def post_detail(id, slug):
-    post = Post.query.get(id=id)
-    return render_template('tests/post_detail.html', post=post)
+    post = Post.query.filter_by(id=id).first()
+    return render_template('post_detail.html', post=post)
 
 @posts_bp.route('/post/new', methods=['GET', 'POST'])
 @login_required
@@ -22,4 +22,4 @@ def post_create():
         data.session.commit()
         flash("Post Criado com sucesso")
         return redirect(url_for('main.index'))
-    return render_template('tests/new_post.html', title="Crie um novo Post", form=form)
+    return render_template('post_detail.html', title="Crie um novo Post", form=form)

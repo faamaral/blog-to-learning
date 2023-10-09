@@ -31,6 +31,9 @@ class User(data.Model,UserMixin):
     def verify_password(self, password):
         return check_password_hash(self.password, password)
     
+    def set_password(self, password):
+        self.password = generate_password_hash(password)
+
     def __repr__(self) -> str:
         return f'<User> -> {self.username}'
 
