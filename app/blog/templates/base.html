@@ -46,7 +46,7 @@
               {% block categories %}
             <nav class="nav d-flex justify-content-between">
                 {% for category in categories %}
-                <a class="p-2 text-muted" href="#">{{category.name}}</a>
+                <a class="p-2 text-muted" href="{{url_for('posts.post_category', id=category.id|int)}}">{{category.name}}</a>
                 {% endfor %}
               </nav>
               {% endblock %}
