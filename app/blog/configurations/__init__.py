@@ -13,11 +13,11 @@ def init_app(app):
     app.config['DEBUG'] = os.environ.get('FLASK_DEBUG')
     app.config['FLASK_ENV'] = os.environ.get('FLASK_ENV')
     app.config['FLASK_ADMIN_SWATCH'] = 'cerulean'
-    #app.config['CKEDITOR_PKG_TYPE'] = 'basic'
+    app.config['CKEDITOR_PKG_TYPE'] = 'full'
     app.config['CKEDITOR_SERVER_LOCAL'] = False
     app.config['CKEDITOR_HEIGHT'] = 400
     app.config['CKEDITOR_WIDTH'] = 700
-    #app.config['UPLOADED_PATH'] = os.path.join(basedir, 'uploads')
+    app.config['UPLOADED_PATH'] = os.path.join(basedir, 'uploads')
     app.config['CKEDITOR_FILE_UPLOADER'] = 'uploads.upload'
     app.config['CKEDITOR_ENABLE_CSRF'] = True  # if you want to enable CSRF protect, uncomment this line
 
