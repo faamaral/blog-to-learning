@@ -1,23 +1,39 @@
-FROM python:slim
+# FROM python:slim
 
-RUN useradd microblog
+# RUN useradd microblog
 
-WORKDIR /home/microblog
+# WORKDIR /home/microblog
 
-COPY requirements.txt requirements.txt
-RUN python -m venv venv
-RUN venv/bin/pip install -r requirements.txt
-RUN venv/bin/pip install gunicorn
+# COPY requirements.txt requirements.txt
+# RUN python -m venv venv
+# RUN venv/bin/pip install -r requirements.txt
+# RUN venv/bin/pip install gunicorn
 
-COPY app app
-COPY migrations migrations
-COPY boot.sh ./
-RUN chmod +x boot.sh
+# COPY app app
+# COPY migrations migrations
+# COPY boot.sh ./
+# RUN chmod +x boot.sh
 
-ENV FLASK_APP ./app/blog/app.py
+# ENV FLASK_APP ./app/blog/app.py
 
-RUN chown -R microblog:microblog ./
-USER microblog
+# RUN chown -R microblog:microblog ./
+# USER microblog
 
-EXPOSE 5000
-ENTRYPOINT ["./boot.sh"]
+# EXPOSE 5000
+# ENTRYPOINT ["./boot.sh"]
+
+FROM python:3.10-slim-buster
+
+# Set the working directory to /app
+WORKDIR /var/www/app
+
+# Copy the entire project directory to the container
+COPY . .
+
+# Install Poetry and project dependencies
+RUN pip install poetry
+RUN poetry config virtualenvs.create false
+RUN poetry install --no-dev
+
+# Start the server
+CMD ["poetry", "run", "start"]

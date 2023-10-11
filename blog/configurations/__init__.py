@@ -7,11 +7,12 @@ def init_app(app):
 
     secret = os.urandom(24)
 
+    app.config['FLASK_APP'] = os.environ.get('FLASK_APP') or './blog/app.py'
     app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY') or secret
     app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URI') or 'sqlite:///' + os.path.join(basedir, 'dados.db')
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
-    app.config['DEBUG'] = os.environ.get('FLASK_DEBUG')
-    app.config['FLASK_ENV'] = os.environ.get('FLASK_ENV')
+    app.config['DEBUG'] = os.environ.get('FLASK_DEBUG') or False
+    app.config['FLASK_ENV'] = os.environ.get('FLASK_ENV') or 'production'
     app.config['FLASK_ADMIN_SWATCH'] = 'cerulean'
     app.config['CKEDITOR_PKG_TYPE'] = 'full'
     app.config['CKEDITOR_SERVER_LOCAL'] = False
