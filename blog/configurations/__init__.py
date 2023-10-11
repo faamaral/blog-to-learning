@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 
 def init_app(app):
     basedir = os.path.abspath(os.path.dirname(__file__))
-    load_dotenv(os.path.join(basedir, '.env'))
+    load_dotenv(os.path.join(basedir, './../../.env'))
 
     secret = os.urandom(24)
 
