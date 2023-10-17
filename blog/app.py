@@ -2,6 +2,7 @@ import os
 
 from flask import Flask, send_from_directory, request, url_for
 from flask_ckeditor import upload_fail, upload_success
+from flask_bootstrap import Bootstrap5
 
 from blog.database import db
 from blog import configurations
@@ -22,6 +23,7 @@ def create_app():
     app.config['UPLOADED_PATH'] = os.path.join(basedir, 'uploads')
     #app.config.from_pyfile('config.py')
     db.init_app(app)
+    
     editor.init_app(app)
     login.init_app(app)
     '''
@@ -31,9 +33,4 @@ def create_app():
     '''
     admin.init_app(app)
     views.init_app(app)
-
-
-
-
-
     return app

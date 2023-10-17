@@ -1,0 +1,22 @@
+.login-form {
+    width: 360px;
+    margin: 0 auto;
+    -ms-flex-align: center;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    height: 100vh;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+
+@media (max-width: 420px) {
+    .login-form {
+        width: 90%;
+    }
+
+    .login-form img {
+        width: 45%;
+    }
+}

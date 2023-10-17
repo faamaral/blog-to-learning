@@ -17,8 +17,16 @@
                         <h5 class="card-title">Entrar</h5>
                         <p class="card-text">Faça login para navegar.</p>
         
-                        <form action="{{url_for('auth.login')}}" method="post">
+                        <form action="{{url_for('auth.register')}}" method="post">
                             {{ form.csrf_token }}
+                            <div class="form-group">
+                                {{form.full_name.label}}
+                                {{ form.full_name(class_="form-control") }}
+                            </div>
+                            <div class="form-group">
+                                {{ form.username.label }}
+                                {{ form.username(class_="form-control") }}
+                            </div>
                             <div class="form-group">
                                 {{form.email.label}}
                                 {{ form.email(class_="form-control") }}
@@ -34,14 +42,14 @@
                                 {{form.password.label}}
                                 {{form.password(class_="form-control")}}
                             </div>
-                            <div class="form-group form-check">
-                              <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                              <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                            <div class="form-group">
+                                {{ form.confirm_password.label }}
+                                {{ form.confirm_password(class_="form-control") }}
                             </div>
                             {{form.submit(class_="btn btn-primary")}}
                           </form>
                           <br>
-                          <p class="card-text">Ainda não possui uma conta? <a href="{{url_for('auth.register')}}">Registrar</a></p>
+                          <p class="card-text">Já possui uma conta? <a href="{{url_for('auth.login')}}">Entrar</a></p>
                     </div>
                 </div>
             </div>

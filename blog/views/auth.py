@@ -24,7 +24,7 @@ def login():
         if not next_page or url_parse(next_page).netloc != '':
             next_page = url_for('main.index')
             return redirect(next_page)
-    return render_template('tests/login.html', title="Entrar", form=form)
+    return render_template('auth/login.html', title="Entrar", form=form)
 
 @auth.route('/logout')
 def logout():
@@ -33,7 +33,6 @@ def logout():
 
 @auth.route('/register', methods=['GET', 'POST'])
 def register():
-
     if current_user.is_authenticated:
         return redirect(url_for('main.index'))
     form = UserRegistrationForm()
@@ -46,4 +45,4 @@ def register():
         flash('Parabens por ingressar no blog')
         return redirect(url_for('auth.login'))
 
-    return render_template('tests/register.html', title='Cadastre-se', form=form)
+    return render_template('auth/register.html', title='Cadastre-se', form=form)
