@@ -19,10 +19,14 @@
           <hr>
           {% endfor %}
 
-          <nav class="blog-pagination">
-            <a class="btn btn-outline-primary" href="#">Previous</a>
-            <a class="btn btn-outline-secondary disabled" href="#">Next</a>
-          </nav>
+            <nav class="blog-pagination">
+              {% if prev_url %}
+              <a class="btn btn-outline-primary" href="{{prev_url}}">Previous</a>
+              {% endif %}
+              {% if next_url %}
+              <a class="btn btn-outline-secondary" href="{{next_url}}">Next</a>
+              {% endif %}
+            </nav>
 
         </div>
         {% endblock content %}

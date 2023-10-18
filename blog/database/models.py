@@ -16,8 +16,8 @@ class User(data.Model,UserMixin):
     id = data.Column(data.Integer, primary_key=True)
     full_name = data.Column(data.String(50), nullable=False)
     email = data.Column(data.String(), unique=True, nullable=False)
-    username = data.Column(data.String(20), index=True, unique=True, nullable=False)
-    password = data.Column(data.String(), nullable=False)
+    username = data.Column(data.String(), index=True, unique=True, nullable=False)
+    password = data.Column(data.String(255), nullable=False)
 
     admin = data.Column(data.Boolean, default=False)
 

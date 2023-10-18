@@ -17,3 +17,9 @@ class IndexAdmin(AdminIndexView):
         return current_user.is_authenticated()
     def inaccessible_callback(self, name, **kwargs):
         return redirect(url_for('auth.login', next=request.url))
+    
+    @expose('/')
+    def index(self):
+        if not current_user.is_authenticated:
+            return redirect(url_for('auth.login'))
+        return super(IndexAdmin, self).index()
