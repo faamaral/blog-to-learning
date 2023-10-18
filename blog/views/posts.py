@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, flash, redirect, url_for
+from flask import Blueprint, render_template, flash, redirect, url_for, request
 from flask_login import login_required, current_user
 
 from blog.database.models import Post, Category
@@ -25,10 +25,19 @@ def post_create():
         return redirect(url_for('main.index'))
     return render_template('post_detail.html', title="Crie um novo Post", form=form)
 
-@posts_bp.route('/post/category/<int:id>', methods=['GET'])
-def post_category(id):
+@posts_bp.route('/post/category/<string:name>', methods=['GET'])
+def post_category(name):
     # Busca todos os posts por categoria
-    category = Category.query.filter_by(id=id).first()
-    posts = Post.query.filter_by(category_id=id).all()
+    page = request.args.get('page', 1, type=int)
+
+    category = Category.query.filter_by(name=name).first()
+
+    posts = Post.query.filter_by(category_id=category.id).order_by(Post.created.desc()).paginate(page=page, per_page=5, error_out=False)
+
+    next_url = url_for('posts.post_category', name=category.name, page=posts.next_num) \
+        if posts.has_next else None
+    prev_url = url_for('posts.post_category', name=category.name, page=posts.prev_num) \
+        if posts.has_prev else None
+
     categories = Category.query.all()
-    return render_template('post_category.html', posts=posts, category=category, categories=categories  )
+    return render_template('post_category.html', posts=posts.items, category=category, categories=categories, next_url=next_url, prev_url=prev_url)

@@ -57,8 +57,12 @@
           {% endfor %}
 
           <nav class="blog-pagination">
-            <a class="btn btn-outline-primary" href="#">Older</a>
-            <a class="btn btn-outline-secondary disabled" href="#">Newer</a>
+            {% if prev_url %}
+            <a class="btn btn-outline-primary" href="{{prev_url}}">Previous</a>
+            {% endif %}
+            {% if next_url %}
+            <a class="btn btn-outline-secondary" href="{{next_url}}">Next</a>
+            {% endif %}
           </nav>
 
         </div><!-- /.blog-main -->
